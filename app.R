@@ -32,7 +32,7 @@ ui <- dashboardPage(
                 box(
                   title = "Plot:", status = "primary",
                   solidHeader = TRUE, width = 8,
-                  plotlyOutput("tool_plot", height = 500)
+                  plotlyOutput("tool_plot", height = 450)
                 )
               )
       ),
