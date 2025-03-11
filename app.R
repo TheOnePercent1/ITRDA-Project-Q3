@@ -44,7 +44,7 @@ ui <- dashboardPage(
                   h3("How to use the Dashboard:"),
                   tags$ul(
                     tags$li("Click on the Dashboard tab on the left hand side to view the Tool plots and tables."),
-                    tags$li("On the dashboard tap there will be a dropdown option where you will be able to chose the Tool to view"),
+                    tags$li("On the dashboard tab there will be a dropdown list where you will be able to chose the Tool to view."),
                     tags$li("On the left the table of the chosen tool will appear with the top 10 most used tools and on the right there will be a plot to visualise these numbers."),
                     tags$li("You can switch the Tool you have chosen to look at different Tools.")
                   ),
