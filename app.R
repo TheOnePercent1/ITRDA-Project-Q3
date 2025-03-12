@@ -2,13 +2,15 @@ library(shiny)
 library(shinydashboard)
 library(tidyverse)
 library(plotly)
+library(DT)
 
 ui <- dashboardPage(
   dashboardHeader(title = "Preferred Tools by Graduates (DashBoard)"),
   dashboardSidebar(
     sidebarMenu(
       menuItem("User Guide", tabName = "guide", icon = icon("book")),
-      menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
+      menuItem("Top 10 Plots", tabName = "dashboard", icon = icon("chart-bar")),
+      menuItem("Data Viewer", tabName = "data", icon = icon("table")),
       selected = "guide"
     )
   ),
@@ -60,7 +62,18 @@ ui <- dashboardPage(
                 )
               )
         
-      )
+      ),
+      tabItem(tabName = "data",
+              fluidRow(
+                box(
+                  title = "Data Viewer",
+                  status = "primary",
+                  solidHeader = TRUE,
+                  width = 12,
+                  dataTableOutput("data_view")
+                )
+              )
+            )
     )
   )
 )
@@ -68,6 +81,17 @@ ui <- dashboardPage(
 server <- function(input, output, session) {
   
   graduate_selected_final <- read.csv("graduate_survey_final.csv")
+  
+  output$data_view <- renderDataTable({
+    datatable(
+      graduate_selected_final,
+      options = list(
+        pageLength = 10,
+        autoWidth = TRUE,
+        scrollX = TRUE
+      )
+    )
+  })
   
   top10_prog_lang <- reactive({
     graduate_selected_final %>% 
